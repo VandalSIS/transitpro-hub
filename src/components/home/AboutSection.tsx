@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { CheckCircle, Award, Users, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import busImage from '@/assets/bus-modern.jpg';
 
@@ -99,10 +100,12 @@ export default function AboutSection() {
             </ul>
 
             <div className="flex flex-wrap gap-4">
-              <Button variant="outline" size="lg" className="group">
-                <Shield className="w-5 h-5" />
-                Certificări
-              </Button>
+              <Link to="/despre">
+                <Button variant="outline" size="lg" className="group">
+                  <Shield className="w-5 h-5" />
+                  Despre Noi
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

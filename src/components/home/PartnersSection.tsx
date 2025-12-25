@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Building2, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const partners = [
@@ -80,10 +81,12 @@ export default function PartnersSection() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center"
         >
-          <Button variant="outline" size="lg" className="group">
-            Vezi Toți Partenerii
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/parteneri">
+            <Button variant="outline" size="lg" className="group">
+              Vezi Toți Partenerii
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, Phone, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import trolleybusCity from '@/assets/trolleybus-city.jpg';
 
@@ -58,14 +59,18 @@ export default function CTASection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Button variant="cta" size="xl" className="group">
-              Solicită Ofertă Gratuită
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="hero-outline" size="xl" className="group">
-              <Phone className="w-5 h-5" />
-              +373 69 312 300
-            </Button>
+            <Link to="/contact">
+              <Button variant="cta" size="xl" className="group">
+                Solicită Ofertă Gratuită
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <a href="tel:+37369312300">
+              <Button variant="hero-outline" size="xl" className="group">
+                <Phone className="w-5 h-5" />
+                +373 69 312 300
+              </Button>
+            </a>
           </motion.div>
 
           {/* Quick Contact Options */}

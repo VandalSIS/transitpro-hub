@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Layers, ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import trolleybusRtec from '@/assets/trolleybus-rtec.jpg';
 import busIsuzu from '@/assets/bus-isuzu-blue.jpg';
@@ -58,10 +59,12 @@ export default function ProjectsSection() {
               <span className="text-accent">Succes</span>
             </h2>
           </div>
-          <Button variant="outline" size="lg" className="group w-fit">
-            Vezi Toate Proiectele
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/proiecte">
+            <Button variant="outline" size="lg" className="group w-fit">
+              Vezi Toate Proiectele
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </motion.div>
 
         {/* Projects Grid */}

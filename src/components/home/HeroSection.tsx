@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-trolleybuses.jpg';
 
@@ -87,14 +88,18 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap gap-4"
           >
-            <Button variant="cta" size="xl" className="group">
-              Serviciile Noastre
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button variant="hero-outline" size="xl" className="group">
-              <Play className="w-5 h-5" />
-              Prezentare Video
-            </Button>
+            <Link to="/servicii">
+              <Button variant="cta" size="xl" className="group">
+                Serviciile Noastre
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="hero-outline" size="xl" className="group">
+                Solicită Ofertă
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Stats */}
