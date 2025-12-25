@@ -27,7 +27,6 @@ const services = [
     title: 'Vânzare Echipamente',
     description: 'Furnizăm autobuze, troleibuze și autobuze electrice noi și second-hand de la producători europeni de renume precum ŠKODA ELECTRIC, ISUZU și alții.',
     image: trolleybusSkoda,
-    href: '/servicii/echipamente',
     features: ['Autobuze urbane și interurbane', 'Troleibuze articulate', 'E-buses și hibride', 'Sisteme de propulsie electrică'],
   },
   {
@@ -35,7 +34,6 @@ const services = [
     title: 'Piese de Schimb',
     description: 'Piese originale și compatibile pentru toate tipurile de vehicule de transport public. Stoc permanent și livrare rapidă din rețeaua noastră europeană.',
     image: spareParts,
-    href: '/servicii/piese',
     features: ['Piese motor și transmisie', 'Sisteme de frânare', 'Componente electrice', 'Piese interior și caroserie'],
   },
   {
@@ -43,7 +41,6 @@ const services = [
     title: 'Service și Mentenanță',
     description: 'Servicii complete de întreținere și reparații, de la diagnosticare computerizată până la revizie capitală. Service autorizat cu garanție.',
     image: busIsuzu,
-    href: '/servicii/service',
     features: ['Service garanție și post-garanție', 'Diagnosticare computerizată', 'Reparații capitale', 'Contracte de mentenanță'],
   },
   {
@@ -51,7 +48,6 @@ const services = [
     title: 'Consultanță și Training',
     description: 'Consultanță tehnică specializată pentru optimizarea flotei și training pentru personalul tehnic și conducători auto.',
     image: trolleybusCity,
-    href: '/servicii/consultanta',
     features: ['Consultanță tehnică', 'Training operatori', 'Planificare flotă', 'Optimizare costuri'],
   },
 ];
@@ -138,7 +134,7 @@ const ServicesPage = () => {
                       {service.description}
                     </p>
 
-                    <ul className="space-y-4 mb-8">
+                    <ul className="space-y-4">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-accent shrink-0" />
@@ -146,13 +142,6 @@ const ServicesPage = () => {
                         </li>
                       ))}
                     </ul>
-
-                    <Link to={service.href}>
-                      <Button variant="cta" size="lg" className="group">
-                        Află Mai Multe
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
                   </div>
                 </motion.div>
               );

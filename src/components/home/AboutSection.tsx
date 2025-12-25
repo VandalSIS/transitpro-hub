@@ -99,9 +99,6 @@ export default function AboutSection() {
             </ul>
 
             <div className="flex flex-wrap gap-4">
-              <Button variant="default" size="lg">
-                Află Mai Multe
-              </Button>
               <Button variant="outline" size="lg" className="group">
                 <Shield className="w-5 h-5" />
                 Certificări

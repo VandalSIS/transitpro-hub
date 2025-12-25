@@ -1,22 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navigation = [
   { name: 'Acasă', href: '/' },
   { name: 'Despre Noi', href: '/despre' },
-  {
-    name: 'Servicii',
-    href: '/servicii',
-    children: [
-      { name: 'Vânzare Echipamente', href: '/servicii/echipamente' },
-      { name: 'Piese de Schimb', href: '/servicii/piese' },
-      { name: 'Service și Mentenanță', href: '/servicii/service' },
-      { name: 'Consultanță', href: '/servicii/consultanta' },
-    ],
-  },
+  { name: 'Servicii', href: '/servicii' },
   { name: 'Parteneri', href: '/parteneri' },
   { name: 'Proiecte', href: '/proiecte' },
   { name: 'Contact', href: '/contact' },
@@ -25,7 +16,6 @@ const navigation = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -38,7 +28,6 @@ export default function Header() {
 
   useEffect(() => {
     setIsOpen(false);
-    setActiveDropdown(null);
   }, [location]);
 
   return (
@@ -86,55 +75,27 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
-                <div
+                <Link
                   key={item.name}
-                  className="relative"
-                  onMouseEnter={() => item.children && setActiveDropdown(item.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  to={item.href}
+                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                    location.pathname === item.href
+                      ? 'text-accent bg-accent/10'
+                      : 'text-foreground hover:text-accent hover:bg-accent/5'
+                  }`}
                 >
-                  <Link
-                    to={item.href}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-1 ${
-                      location.pathname === item.href
-                        ? 'text-accent bg-accent/10'
-                        : 'text-foreground hover:text-accent hover:bg-accent/5'
-                    }`}
-                  >
-                    {item.name}
-                    {item.children && <ChevronDown className="w-4 h-4" />}
-                  </Link>
-
-                  {/* Dropdown */}
-                  <AnimatePresence>
-                    {item.children && activeDropdown === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-xl border border-border overflow-hidden"
-                      >
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            to={child.href}
-                            className="block px-4 py-3 text-sm text-foreground hover:bg-accent/10 hover:text-accent transition-colors"
-                          >
-                            {child.name}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                  {item.name}
+                </Link>
               ))}
             </nav>
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button variant="cta" size="lg">
-                Solicită Ofertă
-              </Button>
+              <Link to="/contact">
+                <Button variant="cta" size="lg">
+                  Solicită Ofertă
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -164,37 +125,25 @@ export default function Header() {
               <div className="container-custom py-4">
                 <nav className="flex flex-col gap-2">
                   {navigation.map((item) => (
-                    <div key={item.name}>
-                      <Link
-                        to={item.href}
-                        className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
-                          location.pathname === item.href
-                            ? 'text-accent bg-accent/10'
-                            : 'text-foreground hover:text-accent hover:bg-accent/5'
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                      {item.children && (
-                        <div className="ml-4 mt-1 space-y-1">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.name}
-                              to={child.href}
-                              className="block px-4 py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
-                            >
-                              {child.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
+                        location.pathname === item.href
+                          ? 'text-accent bg-accent/10'
+                          : 'text-foreground hover:text-accent hover:bg-accent/5'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
                   ))}
                 </nav>
                 <div className="mt-4 pt-4 border-t border-border">
-                  <Button variant="cta" className="w-full" size="lg">
-                    Solicită Ofertă
-                  </Button>
+                  <Link to="/contact">
+                    <Button variant="cta" className="w-full" size="lg">
+                      Solicită Ofertă
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
