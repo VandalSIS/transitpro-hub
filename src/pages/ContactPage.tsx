@@ -93,7 +93,7 @@ const ContactPage = () => {
           <div className="container-custom">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Phone, title: 'Telefon', info: '+373 69 312 300', link: 'tel:+37369312300' },
+                { icon: Phone, title: 'Telefon', info: '+373 69 312 300 / +373 60 100 250', link: 'tel:+37369312300' },
                 { icon: Mail, title: 'Email', info: 'transportsystems2021@gmail.com', link: 'mailto:transportsystems2021@gmail.com' },
                 { icon: MapPin, title: 'Adresa', info: 'Str. Grenoble, 257, Chișinău', link: '#map' },
                 { icon: Clock, title: 'Program', info: 'Luni - Vineri: 09:00 - 18:00', link: null },
@@ -262,14 +262,14 @@ const ContactPage = () => {
               >
                 <div className="bg-card rounded-2xl overflow-hidden shadow-xl border border-border h-full min-h-[500px]">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.547!2d28.8297!3d47.0345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDAyJzA0LjIiTiAyOMKwNDknNDYuOSJF!5e0!3m2!1sen!2s!4v1234567890"
+                    src="https://maps.google.com/maps?q=Strada+Grenoble+257,+Chișinău,+Moldova&t=&z=16&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0, minHeight: '500px' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Transport Systems Location"
+                    title="Transport Systems - Str. Grenoble 257, Chișinău"
                   />
                 </div>
               </motion.div>
@@ -294,6 +294,12 @@ const ContactPage = () => {
                   <Button variant="hero-outline" size="lg">
                     <Phone className="w-5 h-5" />
                     +373 69 312 300
+                  </Button>
+                </a>
+                <a href="tel:+37360100250">
+                  <Button variant="hero-outline" size="lg">
+                    <Phone className="w-5 h-5" />
+                    +373 60 100 250
                   </Button>
                 </a>
                 <a href="https://wa.me/37369312300" target="_blank" rel="noopener noreferrer">

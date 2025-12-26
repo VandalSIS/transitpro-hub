@@ -121,7 +121,7 @@ const PartnersPage = () => {
               {[
                 { value: '50+', label: 'Parteneri Activi' },
                 { value: '9', label: 'Țări' },
-                { value: '19+', label: 'Ani de Colaborare' },
+                { value: '19+', label: 'Ani Experiență Echipă' },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}

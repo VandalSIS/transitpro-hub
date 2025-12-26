@@ -18,11 +18,10 @@ import busModern from '@/assets/bus-modern.jpg';
 import trolleybusRtec from '@/assets/trolleybus-rtec.jpg';
 
 const milestones = [
-  { year: '2004', title: 'Fondarea Companiei', description: 'Înființarea Transport Systems SRL în Chișinău' },
-  { year: '2008', title: 'Parteneriat ŠKODA', description: 'Primul contract cu ŠKODA ELECTRIC' },
-  { year: '2012', title: 'Extindere Regională', description: 'Dezvoltare parteneriate în Europa de Est' },
-  { year: '2018', title: '1000 Vehicule', description: 'Atingerea pragului de 1000 vehicule deservite' },
-  { year: '2023', title: '50+ Parteneri', description: 'Rețea de peste 50 parteneri internaționali' },
+  { year: '2021', title: 'Fondarea Companiei', description: 'Înființarea Transport Systems SRL în Chișinău cu echipă experimentată' },
+  { year: '2022', title: 'Parteneriat ŠKODA', description: 'Semnarea contractului cu ŠKODA ELECTRIC' },
+  { year: '2023', title: 'Extindere Rapidă', description: 'Dezvoltare parteneriate în Europa de Est și Centrală' },
+  { year: '2024', title: '50+ Parteneri', description: 'Rețea de peste 50 parteneri internaționali' },
 ];
 
 const values = [
@@ -102,7 +101,8 @@ const AboutPage = () => {
                 <span className="text-accent">Transport Systems</span>
               </h1>
               <p className="text-xl text-steel-light">
-                Din 2004, suntem dedicați modernizării transportului public din Republica Moldova și regiune.
+                Din 2021, suntem dedicați modernizării transportului public din Republica Moldova și regiune. 
+                Echipa noastră are peste 19 ani de experiență în industrie.
               </p>
             </motion.div>
           </div>
@@ -113,7 +113,7 @@ const AboutPage = () => {
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: 19, suffix: '+', label: 'Ani Experiență' },
+                { value: 19, suffix: '+', label: 'Ani Experiență Echipă' },
                 { value: 50, suffix: '+', label: 'Parteneri' },
                 { value: 1000, suffix: '+', label: 'Vehicule Deservite' },
                 { value: 9, suffix: '', label: 'Țări Acoperite' },

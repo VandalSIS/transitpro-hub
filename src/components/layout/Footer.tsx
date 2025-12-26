@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <p className="text-steel-light text-sm leading-relaxed">
               Partenerul dumneavoastră de încredere pentru echipamente și servicii 
-              de transport public din 2004. Oferim soluții complete pentru autobuze, 
+              de transport public din 2021. Echipă cu 19+ ani experiență. Oferim soluții complete pentru autobuze, 
               troleibuze și autobuze electrice.
             </p>
             <div className="flex gap-4">
@@ -121,6 +121,15 @@ export default function Footer() {
                 >
                   <Phone className="w-5 h-5 text-accent shrink-0" />
                   +373 69 312 300
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+37360100250"
+                  className="flex items-center gap-3 text-steel-light hover:text-accent transition-colors text-sm"
+                >
+                  <Phone className="w-5 h-5 text-accent shrink-0" />
+                  +373 60 100 250
                 </a>
               </li>
               <li>

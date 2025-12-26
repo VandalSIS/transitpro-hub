@@ -4,7 +4,7 @@ Website oficial pentru Transport Systems SRL - furnizor de echipamente și servi
 
 ## Despre Proiect
 
-Transport Systems SRL este partenerul de încredere pentru echipamente și servicii de transport public din 2004. Oferim:
+Transport Systems SRL este partenerul de încredere pentru echipamente și servicii de transport public din 2021. Echipa noastră are peste 19 ani de experiență în industrie. Oferim:
 
 - **Autobuze și Troleibuze** - Vehicule noi și recondiţionate
 - **Piese de Schimb** - Componente originale și aftermarket
@@ -46,9 +46,9 @@ npm run dev
 ## Contact
 
 - **Adresă**: Str. Grenoble, 257, Chișinău, MD-2001
-- **Telefon**: +373-69-312-300
+- **Telefon**: +373-69-312-300 / +373-60-100-250
 - **Email**: transportsystems2021@gmail.com
-- **Website**: https://transportsystems.md
+- **Website**: https://www.transportsystems.md
 
 ## Licență
 

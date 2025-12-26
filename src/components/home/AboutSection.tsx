@@ -56,7 +56,7 @@ export default function AboutSection() {
               className="absolute -top-6 -right-6 glass-card rounded-xl p-6 shadow-xl hidden lg:block"
             >
               <div className="text-4xl font-bold text-accent mb-1">19+</div>
-              <div className="text-sm text-muted-foreground">Ani de Experiență</div>
+              <div className="text-sm text-muted-foreground">Ani Experiență Echipă</div>
             </motion.div>
           </motion.div>
 
@@ -77,8 +77,9 @@ export default function AboutSection() {
             </h2>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Din 2004, Transport Systems SRL este partenerul de încredere al 
+              Din 2021, Transport Systems SRL este partenerul de încredere al 
               companiilor de transport public din Republica Moldova și regiune. 
+              Echipa noastră are peste 19 ani de experiență în industrie. 
               Oferim soluții complete – de la furnizarea de echipamente noi și 
               second-hand, până la piese de schimb originale și servicii de 
               mentenanță de înaltă calitate.

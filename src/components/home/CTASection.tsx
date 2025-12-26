@@ -71,6 +71,12 @@ export default function CTASection() {
                 +373 69 312 300
               </Button>
             </a>
+            <a href="tel:+37360100250">
+              <Button variant="hero-outline" size="xl" className="group">
+                <Phone className="w-5 h-5" />
+                +373 60 100 250
+              </Button>
+            </a>
           </motion.div>
 
           {/* Quick Contact Options */}

@@ -56,7 +56,7 @@ export default function HeroSection() {
           >
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-accent-foreground text-sm font-medium">
-              Din 2004, partenerul tău de încredere
+              Din 2021, partenerul tău de încredere
             </span>
           </motion.div>
 
@@ -79,7 +79,7 @@ export default function HeroSection() {
           >
             Echipamente premium, piese de schimb originale și service autorizat 
             pentru autobuze, troleibuze și autobuze electrice. Experiență de 
-            peste 19 ani în industria transportului public.
+            Echipă cu peste 19 ani experiență în industria transportului public.
           </motion.p>
 
           <motion.div
@@ -110,7 +110,7 @@ export default function HeroSection() {
             className="grid grid-cols-3 gap-8 mt-16 pt-10 border-t border-primary-foreground/20"
           >
             {[
-              { value: '19+', label: 'Ani de Experiență' },
+              { value: '19+', label: 'Ani Experiență Echipă' },
               { value: '50+', label: 'Parteneri Internaționali' },
               { value: '1000+', label: 'Vehicule Deservite' },
             ].map((stat, index) => (

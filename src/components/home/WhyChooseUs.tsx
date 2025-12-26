@@ -7,7 +7,7 @@ const advantages = [
   {
     icon: Award,
     title: 'Experiență Vastă',
-    description: 'Peste 19 ani de experiență în industria transportului public, cu mii de proiecte finalizate cu succes.',
+    description: 'Echipă cu peste 19 ani de experiență în industria transportului public, cu mii de proiecte finalizate cu succes.',
   },
   {
     icon: Shield,

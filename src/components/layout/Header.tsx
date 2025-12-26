@@ -40,6 +40,10 @@ export default function Header() {
               <Phone className="w-4 h-4" />
               +373 69 312 300
             </a>
+            <a href="tel:+37360100250" className="flex items-center gap-2 hover:text-accent transition-colors">
+              <Phone className="w-4 h-4" />
+              +373 60 100 250
+            </a>
             <a href="mailto:transportsystems2021@gmail.com" className="flex items-center gap-2 hover:text-accent transition-colors">
               <Mail className="w-4 h-4" />
               transportsystems2021@gmail.com

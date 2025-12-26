@@ -171,7 +171,7 @@ const ServicesPage = () => {
               {[
                 { icon: Zap, title: 'Rapiditate', description: 'Timp de răspuns minim și livrare express pentru situații urgente' },
                 { icon: Shield, title: 'Garanție', description: 'Toate produsele și serviciile noastre vin cu garanție extinsă' },
-                { icon: Settings, title: 'Expertiză', description: 'Echipă cu experiență de peste 19 ani în industrie' },
+                { icon: Settings, title: 'Expertiză', description: 'Personal cu experiență de peste 19 ani în industrie' },
               ].map((item, index) => (
                 <motion.div
                   key={item.title}
