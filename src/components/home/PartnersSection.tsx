@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { Building2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const partners = [
   { name: 'Regia Transport Electric', location: 'Chișinău, Moldova' },
@@ -20,6 +21,7 @@ const partners = [
 export default function PartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="section-padding bg-background overflow-hidden">
@@ -33,15 +35,14 @@ export default function PartnersSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
             <Building2 className="w-4 h-4" />
-            Parteneri de Încredere
+            {t('partners.badge')}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Colaborăm cu{' '}
-            <span className="text-accent">Lideri Internaționali</span>
+            {t('partners.title1')}{' '}
+            <span className="text-accent">{t('partners.title2')}</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Parteneriate solide cu producători și operatori de transport public 
-            din Europa și regiunea noastră.
+            {t('partners.description')}
           </p>
         </motion.div>
 
@@ -83,7 +84,7 @@ export default function PartnersSection() {
         >
           <Link to="/parteneri">
             <Button variant="outline" size="lg" className="group">
-              Vezi Toți Partenerii
+              {t('partners.viewAll')}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

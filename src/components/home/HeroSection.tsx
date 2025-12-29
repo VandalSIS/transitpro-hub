@@ -2,9 +2,18 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import heroImage from '@/assets/hero-trolleybuses.jpg';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: '19+', label: t('hero.stat1') },
+    { value: '50+', label: t('hero.stat2') },
+    { value: '1000+', label: t('hero.stat3') },
+  ];
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image */}
@@ -56,7 +65,7 @@ export default function HeroSection() {
           >
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-accent-foreground text-sm font-medium">
-              Din 2021, partenerul tău de încredere
+              {t('hero.badge')}
             </span>
           </motion.div>
 
@@ -66,9 +75,9 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary-foreground leading-tight mb-6"
           >
-            Soluții Complete pentru{' '}
-            <span className="text-accent">Transportul Public</span>{' '}
-            Modern
+            {t('hero.title1')}{' '}
+            <span className="text-accent">{t('hero.title2')}</span>{' '}
+            {t('hero.title3')}
           </motion.h1>
 
           <motion.p
@@ -77,9 +86,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-steel-light max-w-2xl mb-10 leading-relaxed"
           >
-            Echipamente premium, piese de schimb originale și service autorizat 
-            pentru autobuze, troleibuze și autobuze electrice. Experiență de 
-            Echipă cu peste 19 ani experiență în industria transportului public.
+            {t('hero.description')}
           </motion.p>
 
           <motion.div
@@ -90,13 +97,13 @@ export default function HeroSection() {
           >
             <Link to="/servicii">
               <Button variant="cta" size="xl" className="group">
-                Serviciile Noastre
+                {t('hero.servicesBtn')}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link to="/contact">
               <Button variant="hero-outline" size="xl" className="group">
-                Solicită Ofertă
+                {t('hero.quoteBtn')}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -109,11 +116,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="grid grid-cols-3 gap-8 mt-16 pt-10 border-t border-primary-foreground/20"
           >
-            {[
-              { value: '19+', label: 'Ani Experiență Echipă' },
-              { value: '50+', label: 'Parteneri Internaționali' },
-              { value: '1000+', label: 'Vehicule Deservite' },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <div key={index} className="text-center sm:text-left">
                 <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">
                   {stat.value}

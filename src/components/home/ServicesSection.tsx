@@ -2,37 +2,39 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Bus, Cog, Wrench, GraduationCap } from 'lucide-react';
-
-const services = [
-  {
-    icon: Bus,
-    title: 'Vânzare Echipamente',
-    description: 'Autobuze, troleibuze și autobuze electrice noi și second-hand de la producători europeni de renume.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    icon: Cog,
-    title: 'Piese de Schimb',
-    description: 'Piese originale pentru motor, transmisie, frânare, sisteme electrice și interior, cu livrare rapidă.',
-    color: 'from-orange-500 to-orange-600',
-  },
-  {
-    icon: Wrench,
-    title: 'Service și Mentenanță',
-    description: 'Servicii complete de garanție și post-garanție, diagnosticare computerizată și intervenții rapide.',
-    color: 'from-green-500 to-green-600',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Consultanță & Training',
-    description: 'Consultanță tehnică specializată, training pentru personal și planificare optimă a flotei.',
-    color: 'from-purple-500 to-purple-600',
-  },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ServicesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Bus,
+      title: t('services.equipment'),
+      description: t('services.equipmentDesc'),
+      color: 'from-blue-500 to-blue-600',
+    },
+    {
+      icon: Cog,
+      title: t('services.parts'),
+      description: t('services.partsDesc'),
+      color: 'from-orange-500 to-orange-600',
+    },
+    {
+      icon: Wrench,
+      title: t('services.maintenance'),
+      description: t('services.maintenanceDesc'),
+      color: 'from-green-500 to-green-600',
+    },
+    {
+      icon: GraduationCap,
+      title: t('services.consulting'),
+      description: t('services.consultingDesc'),
+      color: 'from-purple-500 to-purple-600',
+    },
+  ];
 
   return (
     <section ref={ref} className="section-padding bg-muted/50 overflow-hidden">
@@ -46,15 +48,14 @@ export default function ServicesSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
             <Cog className="w-4 h-4" />
-            Servicii Complete
+            {t('services.badge')}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Tot Ce Aveți Nevoie pentru{' '}
-            <span className="text-accent">Flota Dvs.</span>
+            {t('services.title1')}{' '}
+            <span className="text-accent">{t('services.title2')}</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            De la achiziționarea vehiculelor până la mentenanța completă, 
-            suntem alături de dvs. la fiecare pas.
+            {t('services.description')}
           </p>
         </motion.div>
 
@@ -62,7 +63,7 @@ export default function ServicesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
-              key={service.title}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}

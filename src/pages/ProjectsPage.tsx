@@ -11,6 +11,7 @@ import {
   X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import trolleybusRtec from '@/assets/trolleybus-rtec.jpg';
 import busIsuzu from '@/assets/bus-isuzu-blue.jpg';
 import trolleybusSkoda from '@/assets/trolleybus-skoda.jpg';
@@ -18,78 +19,205 @@ import busModern from '@/assets/bus-modern.jpg';
 import trolleybusCity from '@/assets/trolleybus-city.jpg';
 import heroImage from '@/assets/hero-trolleybuses.jpg';
 
-const projects = [
-  {
-    id: 1,
-    image: trolleybusRtec,
-    title: 'Modernizare Flotă RTEC Chișinău',
-    category: 'Troleibuze',
-    year: '2023',
-    location: 'Chișinău',
-    description: 'Livrare și punere în funcțiune a 10 troleibuze noi pentru Regia Transport Electric Chișinău.',
-    details: 'Proiect complex care a inclus furnizarea de troleibuze articulate noi, training pentru operatori și contract de mentenanță pe 3 ani.',
-  },
-  {
-    id: 2,
-    image: busIsuzu,
-    title: 'Autobuze ISUZU Transport Urban',
-    category: 'Autobuze',
-    year: '2023',
-    location: 'Moldova',
-    description: 'Furnizare de autobuze urbane ISUZU echipate cu sisteme moderne de transport.',
-    details: 'Livrare de 15 autobuze ISUZU cu motor Euro 6, sistem de aer condiționat și platformă pentru persoane cu dizabilități.',
-  },
-  {
-    id: 3,
-    image: trolleybusSkoda,
-    title: 'Parteneriat ŠKODA ELECTRIC',
-    category: 'Parteneriat',
-    year: '2024',
-    location: 'Europa Centrală',
-    description: 'Colaborare strategică pentru distribuția echipamentelor ŠKODA în regiune.',
-    details: 'Semnarea acordului de parteneriat strategic cu ŠKODA ELECTRIC pentru distribuția exclusivă a echipamentelor în Moldova și regiunea.',
-  },
-  {
-    id: 4,
-    image: busModern,
-    title: 'Renovare Flotă Bălți',
-    category: 'Troleibuze',
-    year: '2022',
-    location: 'Bălți',
-    description: 'Modernizarea completă a flotei de troleibuze din municipiul Bălți.',
-    details: 'Proiect de renovare care a inclus înlocuirea sistemelor de propulsie și modernizarea interioarelor pentru 8 troleibuze.',
-  },
-  {
-    id: 5,
-    image: trolleybusCity,
-    title: 'Piese Schimb RTEC',
-    category: 'Piese',
-    year: '2023',
-    location: 'Chișinău',
-    description: 'Contract de furnizare piese de schimb originale pentru întreaga flotă RTEC.',
-    details: 'Contract anual pentru furnizarea de piese de schimb originale cu livrare în 48h și suport tehnic permanent.',
-  },
-  {
-    id: 6,
-    image: heroImage,
-    title: 'Training Tehnic Sarajevo',
-    category: 'Consultanță',
-    year: '2023',
-    location: 'Sarajevo',
-    description: 'Program de training pentru personalul tehnic al companiei de transport din Sarajevo.',
-    details: 'Program intensiv de 2 săptămâni pentru 20 de tehnicieni, acoperind diagnosticare, mentenanță și reparații.',
-  },
-];
-
-const categories = ['Toate', 'Troleibuze', 'Autobuze', 'Piese', 'Consultanță', 'Parteneriat'];
-
 const ProjectsPage = () => {
+  const { t, language } = useLanguage();
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
-  const [selectedCategory, setSelectedCategory] = useState('Toate');
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState(t('projects.all'));
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
-  const filteredProjects = selectedCategory === 'Toate' 
+  const projects = language === 'ro' ? [
+    {
+      id: 1,
+      image: trolleybusRtec,
+      title: 'Modernizare Flotă RTEC Chișinău',
+      category: 'Troleibuze',
+      year: '2023',
+      location: 'Chișinău',
+      description: 'Livrare și punere în funcțiune a 10 troleibuze noi pentru Regia Transport Electric Chișinău.',
+      details: 'Proiect complex care a inclus furnizarea de troleibuze articulate noi, training pentru operatori și contract de mentenanță pe 3 ani.',
+    },
+    {
+      id: 2,
+      image: busIsuzu,
+      title: 'Autobuze ISUZU Transport Urban',
+      category: 'Autobuze',
+      year: '2023',
+      location: 'Moldova',
+      description: 'Furnizare de autobuze urbane ISUZU echipate cu sisteme moderne de transport.',
+      details: 'Livrare de 15 autobuze ISUZU cu motor Euro 6, sistem de aer condiționat și platformă pentru persoane cu dizabilități.',
+    },
+    {
+      id: 3,
+      image: trolleybusSkoda,
+      title: 'Parteneriat ŠKODA ELECTRIC',
+      category: 'Parteneriat',
+      year: '2024',
+      location: 'Europa Centrală',
+      description: 'Colaborare strategică pentru distribuția echipamentelor ŠKODA în regiune.',
+      details: 'Semnarea acordului de parteneriat strategic cu ŠKODA ELECTRIC pentru distribuția exclusivă a echipamentelor în Moldova și regiunea.',
+    },
+    {
+      id: 4,
+      image: busModern,
+      title: 'Renovare Flotă Bălți',
+      category: 'Troleibuze',
+      year: '2022',
+      location: 'Bălți',
+      description: 'Modernizarea completă a flotei de troleibuze din municipiul Bălți.',
+      details: 'Proiect de renovare care a inclus înlocuirea sistemelor de propulsie și modernizarea interioarelor pentru 8 troleibuze.',
+    },
+    {
+      id: 5,
+      image: trolleybusCity,
+      title: 'Piese Schimb RTEC',
+      category: 'Piese',
+      year: '2023',
+      location: 'Chișinău',
+      description: 'Contract de furnizare piese de schimb originale pentru întreaga flotă RTEC.',
+      details: 'Contract anual pentru furnizarea de piese de schimb originale cu livrare în 48h și suport tehnic permanent.',
+    },
+    {
+      id: 6,
+      image: heroImage,
+      title: 'Training Tehnic Sarajevo',
+      category: 'Consultanță',
+      year: '2023',
+      location: 'Sarajevo',
+      description: 'Program de training pentru personalul tehnic al companiei de transport din Sarajevo.',
+      details: 'Program intensiv de 2 săptămâni pentru 20 de tehnicieni, acoperind diagnosticare, mentenanță și reparații.',
+    },
+  ] : language === 'ru' ? [
+    {
+      id: 1,
+      image: trolleybusRtec,
+      title: 'Модернизация парка РТЭК Кишинёв',
+      category: 'Троллейбусы',
+      year: '2023',
+      location: 'Кишинёв',
+      description: 'Поставка и ввод в эксплуатацию 10 новых троллейбусов для Регии Электрического Транспорта Кишинёва.',
+      details: 'Комплексный проект, включающий поставку новых сочленённых троллейбусов, обучение операторов и контракт на техобслуживание на 3 года.',
+    },
+    {
+      id: 2,
+      image: busIsuzu,
+      title: 'Автобусы ISUZU для городского транспорта',
+      category: 'Автобусы',
+      year: '2023',
+      location: 'Молдова',
+      description: 'Поставка городских автобусов ISUZU с современными транспортными системами.',
+      details: 'Поставка 15 автобусов ISUZU с двигателем Euro 6, кондиционером и платформой для людей с ограниченными возможностями.',
+    },
+    {
+      id: 3,
+      image: trolleybusSkoda,
+      title: 'Партнёрство ŠKODA ELECTRIC',
+      category: 'Партнёрство',
+      year: '2024',
+      location: 'Центральная Европа',
+      description: 'Стратегическое сотрудничество по дистрибуции оборудования ŠKODA в регионе.',
+      details: 'Подписание соглашения о стратегическом партнёрстве с ŠKODA ELECTRIC для эксклюзивной дистрибуции в Молдове и регионе.',
+    },
+    {
+      id: 4,
+      image: busModern,
+      title: 'Обновление парка Бельцы',
+      category: 'Троллейбусы',
+      year: '2022',
+      location: 'Бельцы',
+      description: 'Полная модернизация троллейбусного парка муниципия Бельцы.',
+      details: 'Проект по модернизации, включающий замену систем привода и обновление интерьеров для 8 троллейбусов.',
+    },
+    {
+      id: 5,
+      image: trolleybusCity,
+      title: 'Запчасти для РТЭК',
+      category: 'Запчасти',
+      year: '2023',
+      location: 'Кишинёв',
+      description: 'Контракт на поставку оригинальных запчастей для всего парка РТЭК.',
+      details: 'Годовой контракт на поставку оригинальных запчастей с доставкой за 48 часов и постоянной технической поддержкой.',
+    },
+    {
+      id: 6,
+      image: heroImage,
+      title: 'Техническое обучение Сараево',
+      category: 'Консалтинг',
+      year: '2023',
+      location: 'Сараево',
+      description: 'Программа обучения для технического персонала транспортной компании Сараево.',
+      details: 'Интенсивная 2-недельная программа для 20 техников по диагностике, техобслуживанию и ремонту.',
+    },
+  ] : [
+    {
+      id: 1,
+      image: trolleybusRtec,
+      title: 'RTEC Chisinau Fleet Modernization',
+      category: 'Trolleybuses',
+      year: '2023',
+      location: 'Chisinau',
+      description: 'Delivery and commissioning of 10 new trolleybuses for Regia Transport Electric Chisinau.',
+      details: 'Complex project including delivery of new articulated trolleybuses, operator training and 3-year maintenance contract.',
+    },
+    {
+      id: 2,
+      image: busIsuzu,
+      title: 'ISUZU Urban Transport Buses',
+      category: 'Buses',
+      year: '2023',
+      location: 'Moldova',
+      description: 'Supply of ISUZU urban buses equipped with modern transport systems.',
+      details: 'Delivery of 15 ISUZU buses with Euro 6 engine, air conditioning and platform for disabled persons.',
+    },
+    {
+      id: 3,
+      image: trolleybusSkoda,
+      title: 'ŠKODA ELECTRIC Partnership',
+      category: 'Partnership',
+      year: '2024',
+      location: 'Central Europe',
+      description: 'Strategic collaboration for ŠKODA equipment distribution in the region.',
+      details: 'Signing of strategic partnership agreement with ŠKODA ELECTRIC for exclusive distribution in Moldova and the region.',
+    },
+    {
+      id: 4,
+      image: busModern,
+      title: 'Balti Fleet Renovation',
+      category: 'Trolleybuses',
+      year: '2022',
+      location: 'Balti',
+      description: 'Complete modernization of the trolleybus fleet in Balti municipality.',
+      details: 'Renovation project including replacement of propulsion systems and interior modernization for 8 trolleybuses.',
+    },
+    {
+      id: 5,
+      image: trolleybusCity,
+      title: 'RTEC Spare Parts',
+      category: 'Parts',
+      year: '2023',
+      location: 'Chisinau',
+      description: 'Contract for supplying original spare parts for the entire RTEC fleet.',
+      details: 'Annual contract for original spare parts supply with 48h delivery and permanent technical support.',
+    },
+    {
+      id: 6,
+      image: heroImage,
+      title: 'Sarajevo Technical Training',
+      category: 'Consulting',
+      year: '2023',
+      location: 'Sarajevo',
+      description: 'Training program for technical staff of Sarajevo transport company.',
+      details: 'Intensive 2-week program for 20 technicians covering diagnostics, maintenance and repairs.',
+    },
+  ];
+
+  const categories = language === 'ro' 
+    ? ['Toate', 'Troleibuze', 'Autobuze', 'Piese', 'Consultanță', 'Parteneriat']
+    : language === 'ru' 
+    ? ['Все', 'Троллейбусы', 'Автобусы', 'Запчасти', 'Консалтинг', 'Партнёрство']
+    : ['All', 'Trolleybuses', 'Buses', 'Parts', 'Consulting', 'Partnership'];
+
+  const filteredProjects = selectedCategory === categories[0]
     ? projects 
     : projects.filter(p => p.category === selectedCategory);
 
@@ -115,15 +243,14 @@ const ProjectsPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
                 <Layers className="w-4 h-4" />
-                Portofoliu
+                {t('projects.badge')}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                Proiecte{' '}
-                <span className="text-accent">Finalizate cu Succes</span>
+                {t('projects.title1')}{' '}
+                <span className="text-accent">{t('projects.title2')}</span>
               </h1>
               <p className="text-xl text-steel-light">
-                Explorați proiectele noastre reprezentative și vedeți 
-                rezultatele colaborării cu noi.
+                {t('projects.description')}
               </p>
             </motion.div>
           </div>
@@ -135,7 +262,7 @@ const ProjectsPage = () => {
             <div className="flex items-center gap-4 overflow-x-auto pb-2">
               <div className="flex items-center gap-2 text-muted-foreground shrink-0">
                 <Filter className="w-4 h-4" />
-                <span className="text-sm font-medium">Filtrează:</span>
+                <span className="text-sm font-medium">{t('projects.filter')}:</span>
               </div>
               <div className="flex gap-2">
                 {categories.map((category) => (
@@ -208,7 +335,7 @@ const ProjectsPage = () => {
 
             {filteredProjects.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">Nu există proiecte în această categorie.</p>
+                <p className="text-muted-foreground">{t('projects.noProjects')}</p>
               </div>
             )}
           </div>
@@ -263,7 +390,7 @@ const ProjectsPage = () => {
                   {selectedProject.details}
                 </p>
                 <Button variant="cta" onClick={() => setSelectedProject(null)}>
-                  Închide
+                  {t('projects.close')}
                 </Button>
               </div>
             </motion.div>

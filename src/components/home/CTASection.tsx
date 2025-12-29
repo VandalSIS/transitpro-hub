@@ -4,11 +4,13 @@ import { useRef } from 'react';
 import { ArrowRight, Phone, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import trolleybusCity from '@/assets/trolleybus-city.jpg';
 
 export default function CTASection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="relative py-24 overflow-hidden">
@@ -45,12 +47,11 @@ export default function CTASection() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
-            Sunteți Gata să Începeți un{' '}
-            <span className="text-accent">Proiect cu Noi?</span>
+            {t('cta.title1')}{' '}
+            <span className="text-accent">{t('cta.title2')}</span>
           </h2>
           <p className="text-xl text-steel-light mb-10 max-w-2xl mx-auto">
-            Contactați-ne astăzi pentru o consultație gratuită și o ofertă 
-            personalizată pentru nevoile dumneavoastră de transport.
+            {t('cta.description')}
           </p>
 
           <motion.div
@@ -61,7 +62,7 @@ export default function CTASection() {
           >
             <Link to="/contact">
               <Button variant="cta" size="xl" className="group">
-                Solicită Ofertă Gratuită
+                {t('cta.btn')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -91,10 +92,10 @@ export default function CTASection() {
               className="flex items-center gap-2 hover:text-accent transition-colors"
             >
               <MessageSquare className="w-5 h-5" />
-              <span>WhatsApp</span>
+              <span>{t('cta.whatsapp')}</span>
             </a>
             <span className="hidden sm:block">•</span>
-            <span>Răspundem în maxim 24h</span>
+            <span>{t('cta.response')}</span>
           </motion.div>
         </motion.div>
       </div>

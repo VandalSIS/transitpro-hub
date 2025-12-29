@@ -3,20 +3,23 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navigation = [
-  { name: 'Acasă', href: '/' },
-  { name: 'Despre Noi', href: '/despre' },
-  { name: 'Servicii', href: '/servicii' },
-  { name: 'Parteneri', href: '/parteneri' },
-  { name: 'Proiecte', href: '/proiecte' },
-  { name: 'Contact', href: '/contact' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navigation = [
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/despre' },
+    { name: t('nav.services'), href: '/servicii' },
+    { name: t('nav.partners'), href: '/parteneri' },
+    { name: t('nav.projects'), href: '/proiecte' },
+    { name: t('nav.contact'), href: '/contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +53,9 @@ export default function Header() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-steel-light">Luni - Vineri: 09:00 - 18:00</span>
+            <span className="text-steel-light">{t('header.schedule')}</span>
+            <span className="text-steel-light/50">|</span>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
@@ -80,7 +85,7 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   to={item.href}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     location.pathname === item.href
@@ -97,7 +102,7 @@ export default function Header() {
             <div className="hidden lg:block">
               <Link to="/contact">
                 <Button variant="cta" size="lg">
-                  Solicită Ofertă
+                  {t('nav.requestQuote')}
                 </Button>
               </Link>
             </div>
@@ -127,10 +132,14 @@ export default function Header() {
               className="lg:hidden bg-card border-t border-border overflow-hidden"
             >
               <div className="container-custom py-4">
+                {/* Mobile Language Switcher */}
+                <div className="mb-4 pb-4 border-b border-border flex justify-center">
+                  <LanguageSwitcher />
+                </div>
                 <nav className="flex flex-col gap-2">
                   {navigation.map((item) => (
                     <Link
-                      key={item.name}
+                      key={item.href}
                       to={item.href}
                       className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                         location.pathname === item.href
@@ -145,7 +154,7 @@ export default function Header() {
                 <div className="mt-4 pt-4 border-t border-border">
                   <Link to="/contact">
                     <Button variant="cta" className="w-full" size="lg">
-                      Solicită Ofertă
+                      {t('nav.requestQuote')}
                     </Button>
                   </Link>
                 </div>

@@ -16,45 +16,53 @@ import {
   Settings
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import trolleybusSkoda from '@/assets/trolleybus-skoda.jpg';
 import spareParts from '@/assets/spare-parts.jpg';
 import busIsuzu from '@/assets/bus-isuzu-blue.jpg';
 import trolleybusCity from '@/assets/trolleybus-city.jpg';
 
-const services = [
-  {
-    icon: Bus,
-    title: 'Vânzare Echipamente',
-    description: 'Furnizăm autobuze, troleibuze și autobuze electrice noi și second-hand de la producători europeni de renume precum ŠKODA ELECTRIC, ISUZU și alții.',
-    image: trolleybusSkoda,
-    features: ['Autobuze urbane și interurbane', 'Troleibuze articulate', 'E-buses și hibride', 'Sisteme de propulsie electrică'],
-  },
-  {
-    icon: Cog,
-    title: 'Piese de Schimb',
-    description: 'Piese originale și compatibile pentru toate tipurile de vehicule de transport public. Stoc permanent și livrare rapidă din rețeaua noastră europeană.',
-    image: spareParts,
-    features: ['Piese motor și transmisie', 'Sisteme de frânare', 'Componente electrice', 'Piese interior și caroserie'],
-  },
-  {
-    icon: Wrench,
-    title: 'Service și Mentenanță',
-    description: 'Servicii complete de întreținere și reparații, de la diagnosticare computerizată până la revizie capitală. Service autorizat cu garanție.',
-    image: busIsuzu,
-    features: ['Service garanție și post-garanție', 'Diagnosticare computerizată', 'Reparații capitale', 'Contracte de mentenanță'],
-  },
-  {
-    icon: GraduationCap,
-    title: 'Consultanță și Training',
-    description: 'Consultanță tehnică specializată pentru optimizarea flotei și training pentru personalul tehnic și conducători auto.',
-    image: trolleybusCity,
-    features: ['Consultanță tehnică', 'Training operatori', 'Planificare flotă', 'Optimizare costuri'],
-  },
-];
-
 const ServicesPage = () => {
+  const { t } = useLanguage();
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  const services = [
+    {
+      icon: Bus,
+      title: t('service.equipment.title'),
+      description: t('service.equipment.desc'),
+      image: trolleybusSkoda,
+      features: [t('service.equipment.f1'), t('service.equipment.f2'), t('service.equipment.f3'), t('service.equipment.f4')],
+    },
+    {
+      icon: Cog,
+      title: t('service.parts.title'),
+      description: t('service.parts.desc'),
+      image: spareParts,
+      features: [t('service.parts.f1'), t('service.parts.f2'), t('service.parts.f3'), t('service.parts.f4')],
+    },
+    {
+      icon: Wrench,
+      title: t('service.maintenance.title'),
+      description: t('service.maintenance.desc'),
+      image: busIsuzu,
+      features: [t('service.maintenance.f1'), t('service.maintenance.f2'), t('service.maintenance.f3'), t('service.maintenance.f4')],
+    },
+    {
+      icon: GraduationCap,
+      title: t('service.consulting.title'),
+      description: t('service.consulting.desc'),
+      image: trolleybusCity,
+      features: [t('service.consulting.f1'), t('service.consulting.f2'), t('service.consulting.f3'), t('service.consulting.f4')],
+    },
+  ];
+
+  const advantages = [
+    { icon: Zap, title: t('servicesPage.speed'), description: t('servicesPage.speedDesc') },
+    { icon: Shield, title: t('servicesPage.warranty'), description: t('servicesPage.warrantyDesc') },
+    { icon: Settings, title: t('servicesPage.expertise'), description: t('servicesPage.expertiseDesc') },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -78,15 +86,14 @@ const ServicesPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
                 <Settings className="w-4 h-4" />
-                Servicii Complete
+                {t('servicesPage.badge')}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                Soluții Integrate pentru{' '}
-                <span className="text-accent">Transport Public</span>
+                {t('servicesPage.title1')}{' '}
+                <span className="text-accent">{t('servicesPage.title2')}</span>
               </h1>
               <p className="text-xl text-steel-light">
-                De la furnizarea echipamentelor până la mentenanța completă, 
-                oferim tot ce aveți nevoie pentru o flotă eficientă.
+                {t('servicesPage.description')}
               </p>
             </motion.div>
           </div>
@@ -102,7 +109,7 @@ const ServicesPage = () => {
 
               return (
                 <motion.div
-                  key={service.title}
+                  key={index}
                   ref={serviceRef}
                   initial={{ opacity: 0, y: 50 }}
                   animate={serviceInView ? { opacity: 1, y: 0 } : {}}
@@ -160,21 +167,17 @@ const ServicesPage = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                De Ce Serviciile Noastre?
+                {t('servicesPage.whyTitle')}
               </h2>
               <p className="text-lg text-muted-foreground">
-                Oferim avantaje competitive care fac diferența pentru operațiunile dumneavoastră.
+                {t('servicesPage.whyDesc')}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { icon: Zap, title: 'Rapiditate', description: 'Timp de răspuns minim și livrare express pentru situații urgente' },
-                { icon: Shield, title: 'Garanție', description: 'Toate produsele și serviciile noastre vin cu garanție extinsă' },
-                { icon: Settings, title: 'Expertiză', description: 'Personal cu experiență de peste 19 ani în industrie' },
-              ].map((item, index) => (
+              {advantages.map((item, index) => (
                 <motion.div
-                  key={item.title}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -202,14 +205,14 @@ const ServicesPage = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-accent-foreground mb-6">
-                Aveți nevoie de o ofertă personalizată?
+                {t('servicesPage.ctaTitle')}
               </h2>
               <p className="text-xl text-accent-foreground/80 mb-8 max-w-2xl mx-auto">
-                Contactați-ne pentru o consultație gratuită și o ofertă adaptată nevoilor dumneavoastră specifice.
+                {t('servicesPage.ctaDesc')}
               </p>
               <Link to="/contact">
                 <Button variant="hero-outline" size="xl">
-                  Solicită Ofertă Gratuită
+                  {t('servicesPage.ctaBtn')}
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>

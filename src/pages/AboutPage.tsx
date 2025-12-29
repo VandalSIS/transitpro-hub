@@ -9,27 +9,11 @@ import {
   Users, 
   Award, 
   Clock,
-  Building2,
-  CheckCircle,
-  Play
+  Building2
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import busModern from '@/assets/bus-modern.jpg';
 import trolleybusRtec from '@/assets/trolleybus-rtec.jpg';
-
-const milestones = [
-  { year: '2021', title: 'Fondarea Companiei', description: 'Înființarea Transport Systems SRL în Chișinău cu echipă experimentată' },
-  { year: '2022', title: 'Parteneriat ŠKODA', description: 'Semnarea contractului cu ŠKODA ELECTRIC' },
-  { year: '2023', title: 'Extindere Rapidă', description: 'Dezvoltare parteneriate în Europa de Est și Centrală' },
-  { year: '2024', title: '50+ Parteneri', description: 'Rețea de peste 50 parteneri internaționali' },
-];
-
-const values = [
-  { icon: Target, title: 'Excelență', description: 'Standarde înalte în tot ceea ce facem' },
-  { icon: Users, title: 'Parteneriat', description: 'Relații de lungă durată cu clienții noștri' },
-  { icon: Award, title: 'Calitate', description: 'Produse și servicii certificate european' },
-  { icon: Clock, title: 'Promptitudine', description: 'Răspuns rapid la nevoile clienților' },
-];
 
 function Counter({ end, suffix = '' }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -60,6 +44,7 @@ function Counter({ end, suffix = '' }: { end: number; suffix?: string }) {
 }
 
 const AboutPage = () => {
+  const { t, language } = useLanguage();
   const heroRef = useRef(null);
   const missionRef = useRef(null);
   const timelineRef = useRef(null);
@@ -69,6 +54,37 @@ const AboutPage = () => {
   const missionInView = useInView(missionRef, { once: true, amount: 0.3 });
   const timelineInView = useInView(timelineRef, { once: true, amount: 0.2 });
   const valuesInView = useInView(valuesRef, { once: true, amount: 0.3 });
+
+  const milestones = language === 'ro' ? [
+    { year: '2021', title: 'Fondarea Companiei', description: 'Înființarea Transport Systems SRL în Chișinău cu echipă experimentată' },
+    { year: '2022', title: 'Parteneriat ŠKODA', description: 'Semnarea contractului cu ŠKODA ELECTRIC' },
+    { year: '2023', title: 'Extindere Rapidă', description: 'Dezvoltare parteneriate în Europa de Est și Centrală' },
+    { year: '2024', title: '50+ Parteneri', description: 'Rețea de peste 50 parteneri internaționali' },
+  ] : language === 'ru' ? [
+    { year: '2021', title: 'Основание Компании', description: 'Создание Transport Systems SRL в Кишинёве с опытной командой' },
+    { year: '2022', title: 'Партнёрство ŠKODA', description: 'Подписание контракта с ŠKODA ELECTRIC' },
+    { year: '2023', title: 'Быстрое Расширение', description: 'Развитие партнёрств в Восточной и Центральной Европе' },
+    { year: '2024', title: '50+ Партнёров', description: 'Сеть из более чем 50 международных партнёров' },
+  ] : [
+    { year: '2021', title: 'Company Founded', description: 'Establishment of Transport Systems SRL in Chisinau with experienced team' },
+    { year: '2022', title: 'ŠKODA Partnership', description: 'Signing of contract with ŠKODA ELECTRIC' },
+    { year: '2023', title: 'Rapid Expansion', description: 'Development of partnerships in Eastern and Central Europe' },
+    { year: '2024', title: '50+ Partners', description: 'Network of over 50 international partners' },
+  ];
+
+  const values = [
+    { icon: Target, title: t('aboutPage.excellence'), description: t('aboutPage.excellenceDesc') },
+    { icon: Users, title: t('aboutPage.partnership'), description: t('aboutPage.partnershipDesc') },
+    { icon: Award, title: t('aboutPage.quality'), description: t('aboutPage.qualityDesc') },
+    { icon: Clock, title: t('aboutPage.promptness'), description: t('aboutPage.promptnessDesc') },
+  ];
+
+  const stats = [
+    { value: 19, suffix: '+', label: t('aboutPage.yearsExp') },
+    { value: 50, suffix: '+', label: t('aboutPage.partners') },
+    { value: 1000, suffix: '+', label: t('aboutPage.vehicles') },
+    { value: 9, suffix: '', label: t('aboutPage.countries') },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -94,15 +110,14 @@ const AboutPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30 mb-6">
                 <Building2 className="w-4 h-4 text-accent" />
-                <span className="text-primary-foreground text-sm font-medium">Despre Noi</span>
+                <span className="text-primary-foreground text-sm font-medium">{t('aboutPage.badge')}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                Istoria și Viziunea{' '}
-                <span className="text-accent">Transport Systems</span>
+                {t('aboutPage.title1')}{' '}
+                <span className="text-accent">{t('aboutPage.title2')}</span>
               </h1>
               <p className="text-xl text-steel-light">
-                Din 2021, suntem dedicați modernizării transportului public din Republica Moldova și regiune. 
-                Echipa noastră are peste 19 ani de experiență în industrie.
+                {t('aboutPage.description')}
               </p>
             </motion.div>
           </div>
@@ -112,14 +127,9 @@ const AboutPage = () => {
         <section className="py-16 bg-navy">
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { value: 19, suffix: '+', label: 'Ani Experiență Echipă' },
-                { value: 50, suffix: '+', label: 'Parteneri' },
-                { value: 1000, suffix: '+', label: 'Vehicule Deservite' },
-                { value: 9, suffix: '', label: 'Țări Acoperite' },
-              ].map((stat, index) => (
+              {stats.map((stat, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -138,6 +148,21 @@ const AboutPage = () => {
         {/* Mission & Vision */}
         <section ref={missionRef} className="section-padding bg-background">
           <div className="container-custom">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={missionInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto mb-16"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+                <Target className="w-4 h-4" />
+                {t('aboutPage.missionBadge')}
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+                {t('aboutPage.missionTitle')}
+              </h2>
+            </motion.div>
+
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -162,12 +187,10 @@ const AboutPage = () => {
                       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
                         <Target className="w-6 h-6 text-accent" />
                       </div>
-                      <h2 className="text-2xl font-bold text-foreground">Misiunea Noastră</h2>
+                      <h2 className="text-2xl font-bold text-foreground">{t('aboutPage.mission')}</h2>
                     </div>
                     <p className="text-muted-foreground leading-relaxed">
-                      Să oferim soluții complete și de înaltă calitate pentru transportul public, 
-                      contribuind la modernizarea infrastructurii de transport și la îmbunătățirea 
-                      calității vieții cetățenilor din regiune.
+                      {t('aboutPage.missionText')}
                     </p>
                   </div>
 
@@ -176,19 +199,12 @@ const AboutPage = () => {
                       <div className="w-12 h-12 rounded-xl bg-cta/10 flex items-center justify-center">
                         <Eye className="w-6 h-6 text-cta" />
                       </div>
-                      <h2 className="text-2xl font-bold text-foreground">Viziunea Noastră</h2>
+                      <h2 className="text-2xl font-bold text-foreground">{t('aboutPage.vision')}</h2>
                     </div>
                     <p className="text-muted-foreground leading-relaxed">
-                      Să devenim liderul regional în furnizarea de echipamente și servicii pentru 
-                      transportul public electric și sustenabil, promovând inovația și 
-                      responsabilitatea față de mediu.
+                      {t('aboutPage.visionText')}
                     </p>
                   </div>
-
-                  <Button variant="cta" size="lg" className="group">
-                    <Play className="w-5 h-5" />
-                    Video Prezentare
-                  </Button>
                 </div>
               </motion.div>
             </div>
@@ -205,11 +221,8 @@ const AboutPage = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Parcursul Nostru
+                {t('aboutPage.timelineTitle')}
               </h2>
-              <p className="text-lg text-muted-foreground">
-                De la o companie locală la un partener regional de încredere în industria transportului public.
-              </p>
             </motion.div>
 
             <div className="relative">
@@ -252,17 +265,14 @@ const AboutPage = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-                Valorile Noastre
+                {t('aboutPage.valuesTitle')}
               </h2>
-              <p className="text-lg text-steel-light">
-                Principiile care ne ghidează în fiecare zi și în fiecare proiect.
-              </p>
             </motion.div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <motion.div
-                  key={value.title}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}

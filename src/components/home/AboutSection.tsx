@@ -4,18 +4,20 @@ import { useRef } from 'react';
 import { CheckCircle, Award, Users, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import busImage from '@/assets/bus-modern.jpg';
-
-const features = [
-  'Parteneriate cu producători europeni de top',
-  'Service autorizat și suport tehnic 24/7',
-  'Piese de schimb originale cu garanție',
-  'Consultanță tehnică specializată',
-];
 
 export default function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const { t } = useLanguage();
+
+  const features = [
+    t('about.feature1'),
+    t('about.feature2'),
+    t('about.feature3'),
+    t('about.feature4'),
+  ];
 
   return (
     <section ref={ref} className="section-padding bg-background overflow-hidden">
@@ -41,7 +43,7 @@ export default function AboutSection() {
                     <Award className="w-7 h-7 text-accent-foreground" />
                   </div>
                   <div>
-                    <div className="font-bold text-foreground">Certificări Europene</div>
+                    <div className="font-bold text-foreground">{t('about.certBadge')}</div>
                     <div className="text-sm text-muted-foreground">ISO 9001:2015 Certified</div>
                   </div>
                 </div>
@@ -56,7 +58,7 @@ export default function AboutSection() {
               className="absolute -top-6 -right-6 glass-card rounded-xl p-6 shadow-xl hidden lg:block"
             >
               <div className="text-4xl font-bold text-accent mb-1">19+</div>
-              <div className="text-sm text-muted-foreground">Ani Experiență Echipă</div>
+              <div className="text-sm text-muted-foreground">{t('about.yearsExp')}</div>
             </motion.div>
           </motion.div>
 
@@ -68,21 +70,16 @@ export default function AboutSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
               <Users className="w-4 h-4" />
-              Despre Compania Noastră
+              {t('about.badge')}
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              Lider în Industria{' '}
-              <span className="text-accent">Transportului Public</span>
+              {t('about.title1')}{' '}
+              <span className="text-accent">{t('about.title2')}</span>
             </h2>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Din 2021, Transport Systems SRL este partenerul de încredere al 
-              companiilor de transport public din Republica Moldova și regiune. 
-              Echipa noastră are peste 19 ani de experiență în industrie. 
-              Oferim soluții complete – de la furnizarea de echipamente noi și 
-              second-hand, până la piese de schimb originale și servicii de 
-              mentenanță de înaltă calitate.
+              {t('about.description')}
             </p>
 
             <ul className="space-y-4 mb-10">
@@ -104,7 +101,7 @@ export default function AboutSection() {
               <Link to="/despre">
                 <Button variant="outline" size="lg" className="group">
                   <Shield className="w-5 h-5" />
-                  Despre Noi
+                  {t('about.btn')}
                 </Button>
               </Link>
             </div>

@@ -1,27 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, ArrowUp } from 'lucide-react';
-
-const services = [
-  { name: 'Vânzare Echipamente', href: '/servicii/echipamente' },
-  { name: 'Piese de Schimb', href: '/servicii/piese' },
-  { name: 'Service și Mentenanță', href: '/servicii/service' },
-  { name: 'Consultanță Tehnică', href: '/servicii/consultanta' },
-];
-
-const quickLinks = [
-  { name: 'Despre Noi', href: '/despre' },
-  { name: 'Parteneri', href: '/parteneri' },
-  { name: 'Proiecte', href: '/proiecte' },
-  { name: 'Contact', href: '/contact' },
-];
-
-const legalLinks = [
-  { name: 'Politica de Confidențialitate', href: '/politica-confidentialitate' },
-  { name: 'Termeni și Condiții', href: '/termeni-conditii' },
-  { name: 'Politica Cookies', href: '/politica-cookies' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const services = [
+    { name: t('footer.equipment'), href: '/servicii' },
+    { name: t('footer.parts'), href: '/servicii' },
+    { name: t('footer.service'), href: '/servicii' },
+    { name: t('footer.consulting'), href: '/servicii' },
+  ];
+
+  const quickLinks = [
+    { name: t('nav.about'), href: '/despre' },
+    { name: t('nav.partners'), href: '/parteneri' },
+    { name: t('nav.projects'), href: '/proiecte' },
+    { name: t('nav.contact'), href: '/contact' },
+  ];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,9 +40,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-steel-light text-sm leading-relaxed">
-              Partenerul dumneavoastră de încredere pentru echipamente și servicii 
-              de transport public din 2021. Echipă cu 19+ ani experiență. Oferim soluții complete pentru autobuze, 
-              troleibuze și autobuze electrice.
+              {t('footer.description')}
             </p>
             <div className="flex gap-4">
               <a
@@ -71,10 +66,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-lg mb-6">Link-uri Rapide</h4>
+            <h4 className="font-bold text-lg mb-6">{t('footer.quickLinks')}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <Link
                     to={link.href}
                     className="text-steel-light hover:text-accent transition-colors text-sm"
@@ -88,10 +83,10 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-bold text-lg mb-6">Serviciile Noastre</h4>
+            <h4 className="font-bold text-lg mb-6">{t('footer.services')}</h4>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
+              {services.map((service, index) => (
+                <li key={index}>
                   <Link
                     to={service.href}
                     className="text-steel-light hover:text-accent transition-colors text-sm"
@@ -105,7 +100,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-bold text-lg mb-6">Contactează-ne</h4>
+            <h4 className="font-bold text-lg mb-6">{t('footer.contact')}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent mt-0.5 shrink-0" />
@@ -143,7 +138,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-steel-light text-sm">
                 <Clock className="w-5 h-5 text-accent shrink-0" />
-                Luni - Vineri: 09:00 - 18:00
+                {t('header.schedule')}
               </li>
             </ul>
           </div>
@@ -155,19 +150,8 @@ export default function Footer() {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-steel-light text-sm">
-              © {new Date().getFullYear()} Transport Systems SRL. Toate drepturile rezervate.
+              © {new Date().getFullYear()} Transport Systems SRL. {t('footer.rights')}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              {legalLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-steel-light hover:text-accent transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
             <button
               onClick={scrollToTop}
               className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center hover:bg-accent/80 transition-colors"

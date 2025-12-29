@@ -9,13 +9,14 @@ import {
   MapPin, 
   Clock, 
   Send,
-  MessageSquare,
-  CheckCircle
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactPage = () => {
+  const { t } = useLanguage();
   const formRef = useRef(null);
   const formInView = useInView(formRef, { once: true, amount: 0.3 });
   const { toast } = useToast();
@@ -29,16 +30,22 @@ const ContactPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const contactInfo = [
+    { icon: Phone, title: t('contact.phone'), info: '+373 69 312 300 / +373 60 100 250', link: 'tel:+37369312300' },
+    { icon: Mail, title: t('contact.email'), info: 'transportsystems2021@gmail.com', link: 'mailto:transportsystems2021@gmail.com' },
+    { icon: MapPin, title: t('contact.address'), info: 'Str. Grenoble, 257, Chișinău', link: '#map' },
+    { icon: Clock, title: t('contact.schedule'), info: t('header.schedule'), link: null },
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     toast({
-      title: "Mesaj trimis cu succes!",
-      description: "Vă vom contacta în cel mai scurt timp posibil.",
+      title: t('contact.successTitle'),
+      description: t('contact.successDesc'),
     });
     
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -74,15 +81,14 @@ const ContactPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
                 <MessageSquare className="w-4 h-4" />
-                Contactează-ne
+                {t('contact.badge')}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                Suntem Aici să{' '}
-                <span className="text-accent">Vă Ajutăm</span>
+                {t('contact.title1')}{' '}
+                <span className="text-accent">{t('contact.title2')}</span>
               </h1>
               <p className="text-xl text-steel-light">
-                Aveți întrebări sau doriți o ofertă personalizată? 
-                Echipa noastră vă stă la dispoziție.
+                {t('contact.description')}
               </p>
             </motion.div>
           </div>
@@ -92,14 +98,9 @@ const ContactPage = () => {
         <section className="py-12 bg-background -mt-8 relative z-20">
           <div className="container-custom">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { icon: Phone, title: 'Telefon', info: '+373 69 312 300 / +373 60 100 250', link: 'tel:+37369312300' },
-                { icon: Mail, title: 'Email', info: 'transportsystems2021@gmail.com', link: 'mailto:transportsystems2021@gmail.com' },
-                { icon: MapPin, title: 'Adresa', info: 'Str. Grenoble, 257, Chișinău', link: '#map' },
-                { icon: Clock, title: 'Program', info: 'Luni - Vineri: 09:00 - 18:00', link: null },
-              ].map((item, index) => (
+              {contactInfo.map((item, index) => (
                 <motion.div
-                  key={item.title}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -141,13 +142,13 @@ const ContactPage = () => {
                 transition={{ duration: 0.8 }}
               >
                 <div className="bg-card rounded-2xl p-8 shadow-xl border border-border">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Trimite-ne un Mesaj</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-6">{t('contact.formTitle')}</h2>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                          Nume Complet *
+                          {t('contact.name')} *
                         </label>
                         <input
                           type="text"
@@ -162,7 +163,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                          Email *
+                          {t('contact.emailField')} *
                         </label>
                         <input
                           type="email"
@@ -180,7 +181,7 @@ const ContactPage = () => {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                          Telefon
+                          {t('contact.phoneField')}
                         </label>
                         <input
                           type="tel"
@@ -194,7 +195,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                          Subiect *
+                          {t('contact.subject')} *
                         </label>
                         <select
                           id="subject"
@@ -204,19 +205,19 @@ const ContactPage = () => {
                           onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                         >
-                          <option value="">Selectează subiectul</option>
-                          <option value="echipamente">Vânzare Echipamente</option>
-                          <option value="piese">Piese de Schimb</option>
-                          <option value="service">Service și Mentenanță</option>
-                          <option value="consultanta">Consultanță</option>
-                          <option value="altele">Altele</option>
+                          <option value="">{t('contact.selectSubject')}</option>
+                          <option value="echipamente">{t('contact.subjectEquipment')}</option>
+                          <option value="piese">{t('contact.subjectParts')}</option>
+                          <option value="service">{t('contact.subjectService')}</option>
+                          <option value="consultanta">{t('contact.subjectConsulting')}</option>
+                          <option value="altele">{t('contact.subjectOther')}</option>
                         </select>
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                        Mesaj *
+                        {t('contact.message')} *
                       </label>
                       <textarea
                         id="message"
@@ -226,7 +227,7 @@ const ContactPage = () => {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
-                        placeholder="Descrieți pe scurt cererea dumneavoastră..."
+                        placeholder={t('contact.messagePlaceholder')}
                       />
                     </div>
 
@@ -240,12 +241,12 @@ const ContactPage = () => {
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 border-2 border-cta-foreground/30 border-t-cta-foreground rounded-full animate-spin" />
-                          Se trimite...
+                          {t('contact.sending')}
                         </>
                       ) : (
                         <>
                           <Send className="w-5 h-5" />
-                          Trimite Mesajul
+                          {t('contact.send')}
                         </>
                       )}
                     </Button>
@@ -283,10 +284,10 @@ const ContactPage = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-center md:text-left">
                 <h3 className="text-2xl font-bold text-accent-foreground mb-2">
-                  Preferați să vorbiți direct?
+                  {t('contact.callTitle')}
                 </h3>
                 <p className="text-accent-foreground/80">
-                  Sunați-ne sau scrieți-ne pe WhatsApp pentru răspuns imediat.
+                  {t('contact.callDesc')}
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">

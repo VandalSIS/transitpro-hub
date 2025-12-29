@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Building2, 
   MapPin,
@@ -11,72 +12,194 @@ import {
   Globe
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const partners = {
-  clients: [
-    { 
-      name: 'ÎM «Regia Transport Electric»', 
-      location: 'Chișinău, Moldova',
-      description: 'Principalul operator de transport electric din capitala Republicii Moldova',
-      category: 'Client'
-    },
-    { 
-      name: 'ÎM «Parcul Urban de Autobuze»', 
-      location: 'Chișinău, Moldova',
-      description: 'Operator major de transport urban cu autobuze în Chișinău',
-      category: 'Client'
-    },
-    { 
-      name: 'Direcția de Troleibuze din Bălți', 
-      location: 'Bălți, Moldova',
-      description: 'Operator de transport electric din al doilea oraș ca mărime al țării',
-      category: 'Client'
-    },
-    { 
-      name: 'Ministry of Traffic Sarajevo Canton', 
-      location: 'Sarajevo, Bosnia',
-      description: 'Autoritatea de transport a Cantonului Sarajevo',
-      category: 'Client'
-    },
-  ],
-  suppliers: [
-    { 
-      name: 'ŠKODA ELECTRIC a.s.', 
-      location: 'Plzeň, Cehia',
-      description: 'Producător de top de echipamente pentru transport electric',
-      website: 'https://www.skoda.cz',
-      category: 'Furnizor'
-    },
-    { 
-      name: 'MOTOBUS Sp. zoo', 
-      location: 'Polonia',
-      description: 'Furnizor de piese de schimb pentru autobuze și troleibuze',
-      category: 'Furnizor'
-    },
-    { 
-      name: 'ZEZ SILKO s.r.o.', 
-      location: 'Cehia',
-      description: 'Producător de componente electrice pentru vehicule',
-      category: 'Furnizor'
-    },
-    { 
-      name: 'Graboplast FMPCL', 
-      location: 'Ungaria',
-      description: 'Producător de materiale pentru interioare vehicule',
-      category: 'Furnizor'
-    },
-    { 
-      name: 'Cabex Co Srl', 
-      location: 'Italia',
-      description: 'Furnizor de cabluri și componente electrice',
-      category: 'Furnizor'
-    },
-  ],
-};
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PartnersPage = () => {
+  const { t, language } = useLanguage();
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  const partners = {
+    clients: language === 'ro' ? [
+      { 
+        name: 'ÎM «Regia Transport Electric»', 
+        location: 'Chișinău, Moldova',
+        description: 'Principalul operator de transport electric din capitala Republicii Moldova',
+        category: 'Client'
+      },
+      { 
+        name: 'ÎM «Parcul Urban de Autobuze»', 
+        location: 'Chișinău, Moldova',
+        description: 'Operator major de transport urban cu autobuze în Chișinău',
+        category: 'Client'
+      },
+      { 
+        name: 'Direcția de Troleibuze din Bălți', 
+        location: 'Bălți, Moldova',
+        description: 'Operator de transport electric din al doilea oraș ca mărime al țării',
+        category: 'Client'
+      },
+      { 
+        name: 'Ministry of Traffic Sarajevo Canton', 
+        location: 'Sarajevo, Bosnia',
+        description: 'Autoritatea de transport a Cantonului Sarajevo',
+        category: 'Client'
+      },
+    ] : language === 'ru' ? [
+      { 
+        name: 'МП «Регия Транспорт Электрик»', 
+        location: 'Кишинёв, Молдова',
+        description: 'Главный оператор электротранспорта в столице Молдовы',
+        category: 'Клиент'
+      },
+      { 
+        name: 'МП «Городской Автобусный Парк»', 
+        location: 'Кишинёв, Молдова',
+        description: 'Крупный оператор городского автобусного транспорта в Кишинёве',
+        category: 'Клиент'
+      },
+      { 
+        name: 'Троллейбусное Управление Бельц', 
+        location: 'Бельцы, Молдова',
+        description: 'Оператор электротранспорта второго по величине города страны',
+        category: 'Клиент'
+      },
+      { 
+        name: 'Министерство Транспорта Кантона Сараево', 
+        location: 'Сараево, Босния',
+        description: 'Транспортное управление Кантона Сараево',
+        category: 'Клиент'
+      },
+    ] : [
+      { 
+        name: 'ME «Regia Transport Electric»', 
+        location: 'Chisinau, Moldova',
+        description: 'The main electric transport operator in the capital of Moldova',
+        category: 'Client'
+      },
+      { 
+        name: 'ME «Urban Bus Park»', 
+        location: 'Chisinau, Moldova',
+        description: 'Major urban bus transport operator in Chisinau',
+        category: 'Client'
+      },
+      { 
+        name: 'Balti Trolleybus Department', 
+        location: 'Balti, Moldova',
+        description: 'Electric transport operator in the second largest city',
+        category: 'Client'
+      },
+      { 
+        name: 'Ministry of Traffic Sarajevo Canton', 
+        location: 'Sarajevo, Bosnia',
+        description: 'Transport authority of Sarajevo Canton',
+        category: 'Client'
+      },
+    ],
+    suppliers: language === 'ro' ? [
+      { 
+        name: 'ŠKODA ELECTRIC a.s.', 
+        location: 'Plzeň, Cehia',
+        description: 'Producător de top de echipamente pentru transport electric',
+        website: 'https://www.skoda.cz',
+        category: 'Furnizor'
+      },
+      { 
+        name: 'MOTOBUS Sp. zoo', 
+        location: 'Polonia',
+        description: 'Furnizor de piese de schimb pentru autobuze și troleibuze',
+        category: 'Furnizor'
+      },
+      { 
+        name: 'ZEZ SILKO s.r.o.', 
+        location: 'Cehia',
+        description: 'Producător de componente electrice pentru vehicule',
+        category: 'Furnizor'
+      },
+      { 
+        name: 'Graboplast FMPCL', 
+        location: 'Ungaria',
+        description: 'Producător de materiale pentru interioare vehicule',
+        category: 'Furnizor'
+      },
+      { 
+        name: 'Cabex Co Srl', 
+        location: 'Italia',
+        description: 'Furnizor de cabluri și componente electrice',
+        category: 'Furnizor'
+      },
+    ] : language === 'ru' ? [
+      { 
+        name: 'ŠKODA ELECTRIC a.s.', 
+        location: 'Пльзень, Чехия',
+        description: 'Ведущий производитель оборудования для электротранспорта',
+        website: 'https://www.skoda.cz',
+        category: 'Поставщик'
+      },
+      { 
+        name: 'MOTOBUS Sp. zoo', 
+        location: 'Польша',
+        description: 'Поставщик запчастей для автобусов и троллейбусов',
+        category: 'Поставщик'
+      },
+      { 
+        name: 'ZEZ SILKO s.r.o.', 
+        location: 'Чехия',
+        description: 'Производитель электрических компонентов для транспорта',
+        category: 'Поставщик'
+      },
+      { 
+        name: 'Graboplast FMPCL', 
+        location: 'Венгрия',
+        description: 'Производитель материалов для интерьеров транспорта',
+        category: 'Поставщик'
+      },
+      { 
+        name: 'Cabex Co Srl', 
+        location: 'Италия',
+        description: 'Поставщик кабелей и электрических компонентов',
+        category: 'Поставщик'
+      },
+    ] : [
+      { 
+        name: 'ŠKODA ELECTRIC a.s.', 
+        location: 'Pilsen, Czech Republic',
+        description: 'Top manufacturer of electric transport equipment',
+        website: 'https://www.skoda.cz',
+        category: 'Supplier'
+      },
+      { 
+        name: 'MOTOBUS Sp. zoo', 
+        location: 'Poland',
+        description: 'Spare parts supplier for buses and trolleybuses',
+        category: 'Supplier'
+      },
+      { 
+        name: 'ZEZ SILKO s.r.o.', 
+        location: 'Czech Republic',
+        description: 'Manufacturer of electrical components for vehicles',
+        category: 'Supplier'
+      },
+      { 
+        name: 'Graboplast FMPCL', 
+        location: 'Hungary',
+        description: 'Manufacturer of materials for vehicle interiors',
+        category: 'Supplier'
+      },
+      { 
+        name: 'Cabex Co Srl', 
+        location: 'Italy',
+        description: 'Supplier of cables and electrical components',
+        category: 'Supplier'
+      },
+    ],
+  };
+
+  const stats = [
+    { value: '50+', label: t('partners.activePartners') },
+    { value: '9', label: t('partners.countries') },
+    { value: '19+', label: t('partners.yearsExp') },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -100,15 +223,14 @@ const PartnersPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
                 <Users className="w-4 h-4" />
-                Partenerii Noștri
+                {t('partners.badge')}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                Rețea de{' '}
-                <span className="text-accent">Parteneri de Încredere</span>
+                {t('partners.title1')}{' '}
+                <span className="text-accent">{t('partners.title2')}</span>
               </h1>
               <p className="text-xl text-steel-light">
-                Colaborăm cu operatori de transport și furnizori de top din 
-                Moldova, Europa și regiunea noastră.
+                {t('partners.description')}
               </p>
             </motion.div>
           </div>
@@ -118,13 +240,9 @@ const PartnersPage = () => {
         <section className="py-12 bg-accent">
           <div className="container-custom">
             <div className="grid grid-cols-3 gap-8 text-center">
-              {[
-                { value: '50+', label: 'Parteneri Activi' },
-                { value: '9', label: 'Țări' },
-                { value: '19+', label: 'Ani Experiență Echipă' },
-              ].map((stat, index) => (
+              {stats.map((stat, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -149,17 +267,17 @@ const PartnersPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
                 <Building2 className="w-4 h-4" />
-                Clienți
+                {t('partners.clientsBadge')}
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Clienții Noștri
+                {t('partners.clientsTitle')}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {partners.clients.map((partner, index) => (
                 <motion.div
-                  key={partner.name}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -204,17 +322,17 @@ const PartnersPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cta/10 text-cta text-sm font-medium mb-4">
                 <Globe className="w-4 h-4" />
-                Furnizori
+                {t('partners.suppliersBadge')}
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Furnizorii Noștri
+                {t('partners.suppliersTitle')}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {partners.suppliers.map((partner, index) => (
                 <motion.div
-                  key={partner.name}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -260,14 +378,16 @@ const PartnersPage = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-6">
-                Doriți să Deveniți Partener?
+                {t('partners.ctaTitle')}
               </h2>
               <p className="text-xl text-steel-light mb-8 max-w-2xl mx-auto">
-                Suntem mereu deschiși la noi colaborări. Contactați-ne pentru a discuta oportunitățile de parteneriat.
+                {t('partners.ctaDesc')}
               </p>
-              <Button variant="cta" size="xl">
-                Contactați-ne
-              </Button>
+              <Link to="/contact">
+                <Button variant="cta" size="xl">
+                  {t('partners.ctaBtn')}
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </section>
