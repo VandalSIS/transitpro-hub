@@ -4,13 +4,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { CookieConsentProvider } from "./contexts/CookieConsentContext";
 import ScrollToTop from "./components/ScrollToTop";
+import CookieBanner from "./components/CookieBanner";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import PartnersPage from "./pages/PartnersPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
+import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -18,22 +21,26 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/despre" element={<AboutPage />} />
-            <Route path="/servicii" element={<ServicesPage />} />
-            <Route path="/parteneri" element={<PartnersPage />} />
-            <Route path="/proiecte" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <CookieConsentProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/despre" element={<AboutPage />} />
+              <Route path="/servicii" element={<ServicesPage />} />
+              <Route path="/parteneri" element={<PartnersPage />} />
+              <Route path="/proiecte" element={<ProjectsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/termeni" element={<TermsPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <CookieBanner />
+          </BrowserRouter>
+        </TooltipProvider>
+      </CookieConsentProvider>
     </LanguageProvider>
   </QueryClientProvider>
 );

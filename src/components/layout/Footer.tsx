@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, ArrowUp } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCookieConsent } from '@/contexts/CookieConsentContext';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { openSettings } = useCookieConsent();
 
   const services = [
     { name: t('footer.equipment'), href: '/servicii' },
@@ -17,6 +19,7 @@ export default function Footer() {
     { name: t('nav.partners'), href: '/parteneri' },
     { name: t('nav.projects'), href: '/proiecte' },
     { name: t('nav.contact'), href: '/contact' },
+    { name: t('footer.terms'), href: '/termeni' },
   ];
 
   const scrollToTop = () => {
@@ -149,9 +152,24 @@ export default function Footer() {
       <div className="border-t border-navy-light">
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-steel-light text-sm">
+            <p className="text-steel-light text-sm text-center md:text-left">
               © {new Date().getFullYear()} Transport Systems SRL. {t('footer.rights')}
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+              <Link
+                to="/termeni"
+                className="text-steel-light hover:text-accent transition-colors"
+              >
+                {t('footer.terms')}
+              </Link>
+              <button
+                type="button"
+                onClick={openSettings}
+                className="text-steel-light hover:text-accent transition-colors"
+              >
+                {t('footer.cookieSettings')}
+              </button>
+            </div>
             <button
               onClick={scrollToTop}
               className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center hover:bg-accent/80 transition-colors"

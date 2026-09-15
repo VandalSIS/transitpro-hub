@@ -94,6 +94,32 @@ const ro = {
   'footer.parts': 'Piese de Schimb',
   'footer.service': 'Service și Mentenanță',
   'footer.consulting': 'Consultanță',
+  'footer.terms': 'Termeni și condiții',
+  'footer.cookieSettings': 'Setări cookie-uri',
+
+  // Cookies
+  'cookies.title': 'Îți respectăm confidențialitatea',
+  'cookies.description': 'Folosim cookie-uri strict necesare pentru funcționarea site-ului. Cookie-urile de statistică și marketing se activează doar cu consimțământul tău, pe care îl poți retrage oricând.',
+  'cookies.viewTerms': 'Vezi Termeni și condiții',
+  'cookies.acceptAll': 'Acceptă toate',
+  'cookies.rejectAll': 'Refuză toate',
+  'cookies.settings': 'Setări cookie-uri',
+  'cookies.settingsTitle': 'Setări cookie-uri',
+  'cookies.settingsDesc': 'Alege ce tipuri de cookie-uri dorești să permiți. Poți modifica preferințele oricând din subsolul paginii.',
+  'cookies.necessary': 'Strict necesare',
+  'cookies.necessaryDesc': 'Esențiale pentru funcționarea site-ului. Nu pot fi dezactivate.',
+  'cookies.statistics': 'Statistică',
+  'cookies.statisticsDesc': 'Ne ajută să înțelegem cum este folosit site-ul, pentru a-l îmbunătăți.',
+  'cookies.marketing': 'Marketing',
+  'cookies.marketingDesc': 'Folosite pentru a personaliza comunicarea și ofertele relevante.',
+  'cookies.alwaysOn': 'Mereu active',
+  'cookies.save': 'Salvează preferințele',
+
+  // Terms Page
+  'terms.badge': 'Document legal',
+  'terms.title': 'Termeni și condiții',
+  'terms.updated': 'Ultima actualizare: septembrie 2026',
+  'terms.intro': 'Te rugăm să citești cu atenție acești Termeni și condiții înainte de a utiliza site-ul Transport Systems SRL. Prin accesarea site-ului, ești de acord cu acești termeni.',
   
   // Contact Page
   'contact.badge': 'Contactează-ne',
@@ -314,6 +340,32 @@ const ru = {
   'footer.parts': 'Запасные Части',
   'footer.service': 'Сервис и Обслуживание',
   'footer.consulting': 'Консультации',
+  'footer.terms': 'Условия использования',
+  'footer.cookieSettings': 'Настройки cookie',
+
+  // Cookies
+  'cookies.title': 'Мы уважаем вашу конфиденциальность',
+  'cookies.description': 'Мы используем строго необходимые cookie для работы сайта. Cookie для статистики и маркетинга включаются только с вашего согласия, которое вы можете отозвать в любой момент.',
+  'cookies.viewTerms': 'Смотреть Условия использования',
+  'cookies.acceptAll': 'Принять все',
+  'cookies.rejectAll': 'Отклонить все',
+  'cookies.settings': 'Настройки cookie',
+  'cookies.settingsTitle': 'Настройки cookie',
+  'cookies.settingsDesc': 'Выберите, какие типы cookie вы хотите разрешить. Вы можете изменить предпочтения в любой момент в подвале сайта.',
+  'cookies.necessary': 'Строго необходимые',
+  'cookies.necessaryDesc': 'Необходимы для работы сайта. Их нельзя отключить.',
+  'cookies.statistics': 'Статистика',
+  'cookies.statisticsDesc': 'Помогают понять, как используется сайт, чтобы улучшать его.',
+  'cookies.marketing': 'Маркетинг',
+  'cookies.marketingDesc': 'Используются для персонализации коммуникации и релевантных предложений.',
+  'cookies.alwaysOn': 'Всегда активны',
+  'cookies.save': 'Сохранить настройки',
+
+  // Terms Page
+  'terms.badge': 'Юридический документ',
+  'terms.title': 'Условия использования',
+  'terms.updated': 'Последнее обновление: сентябрь 2026',
+  'terms.intro': 'Пожалуйста, внимательно ознакомьтесь с настоящими Условиями использования перед посещением сайта Transport Systems SRL. Используя сайт, вы соглашаетесь с этими условиями.',
   
   // Contact Page
   'contact.badge': 'Свяжитесь с Нами',
@@ -534,6 +586,32 @@ const en = {
   'footer.parts': 'Spare Parts',
   'footer.service': 'Service & Maintenance',
   'footer.consulting': 'Consulting',
+  'footer.terms': 'Terms and Conditions',
+  'footer.cookieSettings': 'Cookie settings',
+
+  // Cookies
+  'cookies.title': 'We respect your privacy',
+  'cookies.description': 'We use strictly necessary cookies to operate the website. Statistics and marketing cookies are enabled only with your consent, which you can withdraw at any time.',
+  'cookies.viewTerms': 'View Terms and Conditions',
+  'cookies.acceptAll': 'Accept all',
+  'cookies.rejectAll': 'Reject all',
+  'cookies.settings': 'Cookie settings',
+  'cookies.settingsTitle': 'Cookie settings',
+  'cookies.settingsDesc': 'Choose which types of cookies you want to allow. You can change your preferences at any time from the footer.',
+  'cookies.necessary': 'Strictly necessary',
+  'cookies.necessaryDesc': 'Essential for the website to function. These cannot be disabled.',
+  'cookies.statistics': 'Statistics',
+  'cookies.statisticsDesc': 'Help us understand how the website is used, so we can improve it.',
+  'cookies.marketing': 'Marketing',
+  'cookies.marketingDesc': 'Used to personalize communication and relevant offers.',
+  'cookies.alwaysOn': 'Always on',
+  'cookies.save': 'Save preferences',
+
+  // Terms Page
+  'terms.badge': 'Legal document',
+  'terms.title': 'Terms and Conditions',
+  'terms.updated': 'Last updated: September 2026',
+  'terms.intro': 'Please read these Terms and Conditions carefully before using the Transport Systems SRL website. By accessing the site, you agree to these terms.',
   
   // Contact Page
   'contact.badge': 'Contact Us',
